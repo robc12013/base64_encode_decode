@@ -131,26 +131,6 @@ void base64Encode(char *inputBytes, char *encodedData) {
   }
 }
 
-void eightBitGroupsToInt(char *eightBitGroups) {
-  // Convert the byte str representations in the eightBitGroups to int.
-  int eightBitGroupsLength = strlen(eightBitGroups);
-  printf("eightBitGroupsLength: %d\n", eightBitGroupsLength);
-  int eightBitGroupsIndex = 0;
-  int newEightBitGroupsIndex = 0;
-  char eightBit[8];
-  eightBit[8] = '\0';
-  int eightBitIndex = 0;
-  while (eightBitGroupsIndex < eightBitGroupsLength) {
-    eightBit[eightBitIndex++] = eightBitGroups[eightBitGroupsIndex++];
-    if (eightBitIndex == 8) {
-      eightBitGroups[newEightBitGroupsIndex++] = binStrToInt(eightBit, 8);
-      eightBitIndex = 0;
-    }
-  }
-  printf("newEightBitGroupsIndex: %d\n", newEightBitGroupsIndex);
-  eightBitGroups[newEightBitGroupsIndex] = '\0';
-}
-
 void base64Decode(char *inputBytes, char *decodedData) {
   int inputBytesLength = strlen(inputBytes);
   decodedData[0] = '\0';
@@ -181,12 +161,9 @@ void base64Decode(char *inputBytes, char *decodedData) {
 
     inputIndex++;
   }
-
-  // eightBitGroupsToInt(decodedData);
   
   finalConversion:
   int decodedDataLength = strlen(decodedData);
-  printf("decodedDataLength: %d\n", decodedDataLength);
   int decodedDataIndex = 0;
   int newdecodedDataIndex = 0;
   char eightBit[8];
@@ -199,6 +176,6 @@ void base64Decode(char *inputBytes, char *decodedData) {
       eightBitIndex = 0;
     }
   }
-  printf("newdecodedDataIndex: %d\n", newdecodedDataIndex);
+
   decodedData[newdecodedDataIndex] = '\0';
 }
